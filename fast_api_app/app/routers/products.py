@@ -2,8 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.models import Product as ProductModel
-from app.schemas import Product
+from app.models.product import Product as ProductModel
+from app.schemas.product import Product
+
 
 router = APIRouter(
     prefix="/products",
@@ -18,9 +19,16 @@ def get_products(db: Session = Depends(get_db)):
 
 @router.get("/{product_id}", response_model=Product)
 def get_product(product_id: int, db: Session = Depends(get_db)):
-    product = db.query(ProductModel).filter(ProductModel.id == product_id).first()
+    product = (
+        db.query(ProductModel)
+        .filter(ProductModel.id == product_id)
+        .first()
+    )
 
     if product is None:
-        raise HTTPException(status_code=404, detail="Product not found")
+        raise HTTPException(
+            status_code=404,
+            detail="Product not found"
+        )
 
     return product

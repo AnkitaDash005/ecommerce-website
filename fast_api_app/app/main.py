@@ -2,6 +2,12 @@ from fastapi import FastAPI
 from app.database import Base, engine
 from scalar_fastapi import get_scalar_api_reference
 from app.routers.products import router as product_router
+from app.routers.cart import router as cart_router
+
+from app.models.product import Product
+from app.models.cart import CartItem
+
+
 
 Base.metadata.create_all(bind=engine)
 
@@ -11,6 +17,7 @@ app = FastAPI(
 )
 
 app.include_router(product_router)
+app.include_router(cart_router)
 
 
 @app.get("/")
