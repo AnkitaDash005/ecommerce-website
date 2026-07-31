@@ -5,6 +5,8 @@ from app.database import SessionLocal
 from app.models.cart import CartItem
 from app.models.product import Product
 from app.schemas.cart import CartCreate, CartUpdate
+from app.auth.dependencies import get_current_user
+from app.models.user import User
 
 router = APIRouter(prefix="/cart", tags=["Cart"])
 
@@ -18,15 +20,22 @@ def get_db():
 
 
 @router.post("/")
-def add_to_cart(item: CartCreate, db: Session = Depends(get_db)):
-    product = db.query(Product).filter(Product.id == item.product_id).first()
+def add_to_cart(
+    cart: CartCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    product = db.query(Product).filter(
+        Product.id == cart.product_id
+    ).first()
 
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
 
     cart_item = CartItem(
-        product_id=item.product_id,
-        quantity=item.quantity
+        user_id=current_user.id,
+        product_id=cart.product_id,
+        quantity=cart.quantity
     )
 
     db.add(cart_item)
@@ -35,10 +44,16 @@ def add_to_cart(item: CartCreate, db: Session = Depends(get_db)):
 
     return cart_item
 
-
 @router.get("/")
-def view_cart(db: Session = Depends(get_db)):
-    cart = db.query(CartItem).all()
+def view_cart(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    cart = (
+        db.query(CartItem)
+        .filter(CartItem.user_id == current_user.id)
+        .all()
+    )
 
     total = 0
     items = []
@@ -60,10 +75,21 @@ def view_cart(db: Session = Depends(get_db)):
         "total": total
     }
 
-
 @router.put("/{cart_id}")
-def update_cart(cart_id: int, item: CartUpdate, db: Session = Depends(get_db)):
-    cart = db.query(CartItem).filter(CartItem.id == cart_id).first()
+def update_cart(
+    cart_id: int,
+    item: CartUpdate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    cart = (
+        db.query(CartItem)
+        .filter(
+            CartItem.id == cart_id,
+            CartItem.user_id == current_user.id
+        )
+        .first()
+    )
 
     if not cart:
         raise HTTPException(status_code=404, detail="Item not found")
@@ -75,10 +101,20 @@ def update_cart(cart_id: int, item: CartUpdate, db: Session = Depends(get_db)):
 
     return cart
 
-
 @router.delete("/{cart_id}")
-def delete_item(cart_id: int, db: Session = Depends(get_db)):
-    cart = db.query(CartItem).filter(CartItem.id == cart_id).first()
+def delete_item(
+    cart_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
+    cart = (
+        db.query(CartItem)
+        .filter(
+            CartItem.id == cart_id,
+            CartItem.user_id == current_user.id
+        )
+        .first()
+    )
 
     if not cart:
         raise HTTPException(status_code=404, detail="Item not found")

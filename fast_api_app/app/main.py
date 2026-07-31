@@ -6,6 +6,8 @@ from app.routers.cart import router as cart_router
 
 from app.models.product import Product
 from app.models.cart import CartItem
+from app.routers.auth import router as auth_router
+from app.models.user import User
 
 
 
@@ -18,6 +20,7 @@ app = FastAPI(
 
 app.include_router(product_router)
 app.include_router(cart_router)
+app.include_router(auth_router)
 
 
 @app.get("/")
