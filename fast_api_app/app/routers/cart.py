@@ -19,6 +19,7 @@ def get_db():
         db.close()
 
 
+
 @router.post("/")
 def add_to_cart(
     cart: CartCreate,
@@ -32,6 +33,24 @@ def add_to_cart(
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
 
+    # Check if the product is already in the user's cart
+    existing_item = (
+        db.query(CartItem)
+        .filter(
+            CartItem.user_id == current_user.id,
+            CartItem.product_id == cart.product_id
+        )
+        .first()
+    )
+
+    # If it exists, increase the quantity
+    if existing_item:
+        existing_item.quantity += cart.quantity
+        db.commit()
+        db.refresh(existing_item)
+        return existing_item
+
+    # Otherwise, create a new cart item
     cart_item = CartItem(
         user_id=current_user.id,
         product_id=cart.product_id,

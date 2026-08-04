@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<br>
+
+<div>
+
+    <button onclick="filterCategory(0)">
+        All
+    </button>
+
+    <button onclick="filterCategory(1)">
+        Laptop
+    </button>
+
+    <button onclick="filterCategory(2)">
+        Mobile
+    </button>
+
+    <button onclick="filterCategory(3)">
+        Accessories
+    </button>
+
+</div>
+
+<br>
+
+<input
+    type="text"
+    id="search"
+    placeholder="Search products..."
+    onkeyup="searchProducts()"
+>
+
+<br><br>
+
+<div id="products"></div>
+<script src="js/api.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/products.js"></script>
+<script src="js/logout.js"></script>
+<script src="js/navbar.js"></script>
+
+</body>
+
+</html>

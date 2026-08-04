@@ -1,0 +1,256 @@
+/* ---------- GENERAL ---------- */
+
+body {
+
+    font-family: Arial, sans-serif;
+
+    margin: 0;
+
+    padding: 0;
+
+    background-color: #f5f5f5;
+
+    color: #333;
+
+}
+
+
+h1, h2 {
+
+    text-align: center;
+
+}
+
+
+/* ---------- HOME PAGE ---------- */
+
+.home-container {
+
+    height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+.home-container h1 {
+
+    font-size: 40px;
+
+}
+
+
+.home-container p {
+
+    font-size: 18px;
+
+}
+
+
+/* ---------- BUTTONS ---------- */
+
+button {
+
+    background-color: #2874f0;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 20px;
+
+    margin: 8px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+}
+
+
+button:hover {
+
+    background-color: #1258c7;
+
+}
+
+
+/* ---------- NAVBAR ---------- */
+
+nav {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 15px 30px;
+
+    background-color: #222;
+
+}
+
+
+nav h2 {
+
+    color: white;
+
+    margin-right: auto;
+
+}
+
+
+nav a {
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 16px;
+
+}
+
+
+nav a:hover {
+
+    color: #2874f0;
+
+}
+
+
+
+/* ---------- PRODUCTS ---------- */
+
+
+#products {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 20px;
+
+    padding: 30px;
+
+}
+
+
+.product-card {
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+
+}
+
+
+.product-card img {
+
+    width: 100%;
+
+    height: 200px;
+
+    object-fit: contain;
+
+}
+
+
+.product-card h2 {
+
+    text-align: left;
+
+}
+
+
+.product-card button {
+
+    width: 100%;
+
+}
+
+
+
+/* ---------- CART / ORDERS / WISHLIST ---------- */
+
+
+#cart-items,
+#orders,
+#wishlist {
+
+    padding: 30px;
+
+}
+
+
+#cart-items div,
+#orders div,
+#wishlist div {
+
+    background:white;
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+    border-radius:10px;
+
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+
+}
+
+
+/* ---------- INPUTS ---------- */
+
+
+input {
+
+    padding:10px;
+
+    width:250px;
+
+    border-radius:5px;
+
+    border:1px solid #ccc;
+
+}
+
+
+
+/* ---------- PRODUCT DETAILS ---------- */
+
+
+#product-details {
+
+    background:white;
+
+    margin:30px;
+
+    padding:30px;
+
+    border-radius:10px;
+
+}
+
+
+#product-details img {
+
+    width:300px;
+
+    height:250px;
+
+    object-fit:contain;
+
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Product Details</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+<div id="navbar"></div>
+
+
+<div id="product-details"></div>
+
+
+<hr>
+
+<h2>Reviews</h2>
+
+<div id="reviews"></div>
+
+
+<h3>Add Review</h3>
+
+<select id="rating">
+    <option value="5">⭐⭐⭐⭐⭐</option>
+    <option value="4">⭐⭐⭐⭐</option>
+    <option value="3">⭐⭐⭐</option>
+    <option value="2">⭐⭐</option>
+    <option value="1">⭐</option>
+</select>
+
+
+<br><br>
+
+<textarea 
+    id="comment"
+    placeholder="Write your review">
+</textarea>
+
+<br>
+
+<button onclick="submitReview()">
+    Submit Review
+</button>
+
+<script src="js/api.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script>
+<script src="js/review.js"></script>
+<script src="js/product-details.js"></script>
+<script src="js/logout.js"></script>
+<script src="js/navbar.js"></script>
+
+
+</body>
+
+</html>
