@@ -38,3 +38,17 @@ uvicorn app.main:app --reload
 
 Frontend:
 Open index.html
+
+## Screenshots
+
+### Home Page
+![Home Page](screenshots/home.png)
+
+### Products Page
+![Products Page](screenshots/products.png)
+
+### Cart Page
+![Cart Page](screenshots/cart.png)
+
+### Orders Page
+![Orders Page](screenshots/orders.png)
